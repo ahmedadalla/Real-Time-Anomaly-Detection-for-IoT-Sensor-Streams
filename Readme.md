@@ -24,6 +24,24 @@ Develop an intelligent detection system that achieves:
 - **Balanced precision** (avoid unnecessary shutdowns)  
 - **Real-time performance under operational constraints**  
 
+## 📦 Install Requirements
+
+Make sure you have Python 3.9+ installed.
+
+Then install all required dependencies using:
+
+```bash
+pip install -r requirements.txt
+```
+
+If you are using Google Colab, run:
+
+```python
+!pip install -r requirements.txt
+```
+
+This will install all necessary libraries listed in the `requirements.txt` file.
+
 ## 📂 How to Run the Data Loading Notebook in Google Colab
 
 Follow these simple steps:
