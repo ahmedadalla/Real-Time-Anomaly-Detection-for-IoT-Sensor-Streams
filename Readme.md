@@ -42,7 +42,7 @@ If you are using Google Colab, run:
 
 This will install all necessary libraries listed in the `requirements.txt` file.
 
-## 📂 How to Run the Data Loading Notebook in Google Colab
+## 📂 Run the Data Loading Notebook in Google Colab
 
 Follow these simple steps:
 
