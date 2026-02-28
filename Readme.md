@@ -96,4 +96,30 @@ No additional setup is required.
 
 ---
 
-✅ After execution, your data will be properly prepared and ready for the next modeling steps.
+## Run the Notebook Preprocessing&Feature-Engineering
+
+### 3️⃣ Open in Google Colab
+
+1. Right-click on `Preprocessing&Feature-Engineering.ipynb`.
+2. Select **Open with → Google Colaboratory**.
+
+---
+
+### 4️⃣ Run the Notebook
+
+Click:
+
+```
+Runtime → Run all
+```
+
+The notebook will automatically:
+
+- Mount Google Drive  
+- Load the dataset  
+- Store the data inside the `DepiPrpject` folder  
+- Perform data loading and cleaning  
+
+No additional setup is required.
+
+---
