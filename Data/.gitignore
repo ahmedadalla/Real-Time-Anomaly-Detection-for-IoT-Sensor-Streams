@@ -1,1 +1,3 @@
 *.csv
+raw_data/
+swat_preprocessed/
