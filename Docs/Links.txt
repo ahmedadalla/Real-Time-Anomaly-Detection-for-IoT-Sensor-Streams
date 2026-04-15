@@ -1,3 +1,1 @@
 repo >> https://github.com/ahmedadalla/Real-Time-Anomaly-Detection-for-IoT-Sensor-Streams
-
-Data >> https://drive.google.com/drive/folders/1evFvttCI1-uzZjdsmHmFlJHXfF_i0fFg?usp=sharing
