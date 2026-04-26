@@ -1,125 +1,104 @@
-# Cyber-Physical Security in Modern Water Treatment Facilities
+# Real-Time Anomaly Detection for IoT Sensor Streams
 
-Real-time anomaly and cyber-attack detection for industrial water treatment systems using multivariate time-series data.
+Real-time anomaly and cyber-attack detection for industrial water treatment systems using multivariate time-series sensor data.
 
 ## Overview
 
-Modern water treatment plants rely on interconnected Industrial Control Systems (ICS) composed of distributed sensors and actuators. As these systems become increasingly networked and digitized, their exposure to cyber threats grows significantly.
+This project targets cyber-physical security in modern water treatment facilities. The repository includes:
+- Data collection/cleaning notebooks
+- Preprocessing and feature engineering pipeline
+- Two anomaly detection models (LSTM Autoencoder and USAD)
+- Saved datasets and model artifacts
 
-Attackers may inject false sensor data, manipulate control commands, or disrupt communication networks while keeping operations seemingly normal — making detection challenging.
+Primary objective:
+- Detect attacks with high recall while preserving practical precision and low-latency feasibility.
 
-## Problem
+## Repository Structure
 
-Detect cyber-attacks and anomalies in real time from high-dimensional, heterogeneous sensor data across interdependent process stages while:
+- `notebooks/`
+	- `Data_loading_cleaning.ipynb`
+	- `EDA.ipynb`
+	- `preprocessing_feature_engineering.ipynb`
+	- `LSTM.ipynb`
+	- `USAD.ipynb`
+- `Data/raw_data/`
+	- `merged_data.csv`, `normal_data.csv`, `attack_data.csv`
+- `Data/swat_preprocessed/`
+	- `X_train.npy`, `X_val.npy`, `X_test.npy`, `y_test.npy`
+	- `config.json`, `feature_columns.json`, `scaler.pkl`
+- `Data/models/`
+	- `lstm_autoencoder.pth`
+	- `usad_swat_weights.pth`
+	- `usad_swat_model_full.pth`
+- `documentations/`
+	- Milestone-based project documentation package
 
-- Maintaining high system availability  
-- Minimizing false alarms  
-- Meeting strict sub-second latency requirements  
+## Setup
 
-## Objective
-
-Develop an intelligent detection system that achieves:
-
-- **High recall** (maximize attack detection)  
-- **Balanced precision** (avoid unnecessary shutdowns)  
-- **Real-time performance under operational constraints**  
-
-## 📦 Install Requirements
-
-Make sure you have Python 3.9+ installed.
-
-Then install all required dependencies using:
+1. Create and activate a Python environment (recommended Python 3.10+).
+2. Install dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-If you are using Google Colab, run:
+## Recommended Notebook Execution Order
 
-```python
-!pip install -r requirements.txt
-```
+1. `notebooks/Data_loading_cleaning.ipynb`
+2. `notebooks/EDA.ipynb`
+3. `notebooks/preprocessing_feature_engineering.ipynb`
+4. `notebooks/LSTM.ipynb`
+5. `notebooks/USAD.ipynb`
 
-This will install all necessary libraries listed in the `requirements.txt` file.
+This order matches the data and artifact dependencies between notebooks.
 
-## 📂 Run the Data Loading Notebook in Google Colab
+## Data and Preprocessing Notes
 
-Follow these simple steps:
+Preprocessing outputs include:
+- Window size: `12`
+- Split ratios: train `0.90`, val `0.05`, test `0.05`
+- Feature set saved in `Data/swat_preprocessed/feature_columns.json`
 
-### 1️⃣ Create a Folder in Google Drive
+Generated tensor shapes reported by preprocessing notebook:
+- `X_train: (1245136, 12, 47)`
+- `X_val: (69163, 12, 47)`
+- `X_test: (120184, 12, 47)`
+- `y_test: (120184,)`
 
-1. Open **Google Drive**.
-2. Click **New → Folder**.
-3. Name the folder exactly:
+## Models
 
-```
-DepiPrpject
-```
+### LSTM Autoencoder
+- Notebook: `notebooks/LSTM.ipynb`
+- Trained on normal windows with reconstruction loss
+- Uses validation reconstruction error percentile for thresholding
 
----
+### USAD
+- Notebook: `notebooks/USAD.ipynb`
+- Encoder + dual-decoder architecture
+- Threshold computed from validation score distribution
 
-### 2️⃣ Upload the Notebook
+## Reported Evaluation Snapshot
 
-Upload the file:
+From notebook outputs currently stored in this repository:
+- LSTM notebook reports test accuracy around `0.97`
+- USAD notebook reports:
+	- threshold around `0.0014934739`
+	- test accuracy around `0.96`
+	- ROC-AUC around `0.9994`
 
-```
-Data_loading_cleaning.ipynb
-```
+## Documentation
 
-into the `DepiProject` folder.
+A full milestone-aligned documentation package is available in:
+- `documentations/project_documentation.md`
+- `documentations/README.md`
 
----
+## Current Scope vs. Next Phase
 
-### 3️⃣ Open in Google Colab
+Implemented now:
+- Offline data processing, model training, and evaluation
 
-1. Right-click on `Data_loading_cleaning.ipynb`.
-2. Select **Open with → Google Colaboratory**.
-
----
-
-### 4️⃣ Run the Notebook
-
-Click:
-
-```
-Runtime → Run all
-```
-
-The notebook will automatically:
-
-- Mount Google Drive  
-- Load the dataset  
-- Store the data inside the `DepiPrpject` folder  
-- Perform data loading and cleaning  
-
-No additional setup is required.
-
----
-
-## Run the Notebook Preprocessing&Feature-Engineering
-
-### 3️⃣ Open in Google Colab
-
-1. Right-click on `Preprocessing&Feature-Engineering.ipynb`.
-2. Select **Open with → Google Colaboratory**.
-
----
-
-### 4️⃣ Run the Notebook
-
-Click:
-
-```
-Runtime → Run all
-```
-
-The notebook will automatically:
-
-- Mount Google Drive  
-- Load the dataset  
-- Store the data inside the `DepiPrpject` folder  
-- Perform data loading and cleaning  
-
-No additional setup is required.
-
----
+Planned next:
+- Streaming ingestion
+- Deployment API for online inference
+- Alerting and monitoring dashboard
+- MLOps automation (tracking, drift detection, retraining)
