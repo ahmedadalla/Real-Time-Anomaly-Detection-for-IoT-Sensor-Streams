@@ -47,8 +47,9 @@ From `Docs/problem_formula.pdf` and `Docs/Problem Formulation.docx`:
 Status: mostly completed in offline form.
 
 ### Milestone 2 (Modeling + Evaluation)
-Status: completed for LSTM and USAD workflows.
-Gap: Isolation Forest baseline and standardized hyperparameter search are pending.
+Status: completed for LSTM, USAD, and Isolation Forest workflows.
+Benchmark: standardized comparison table is documented across all candidate models.
+Gap: structured hyperparameter search tracking remains pending.
 
 ### Milestone 3 (Cloud Deployment + Integration)
 Status: not yet implemented in this repository.

@@ -23,8 +23,6 @@ This status is mapped to the milestone brief in `Docs/Project Idea.pdf`.
   - `Docs/EDA.pdf`
 
 ### Pending
-- Production-grade streaming ingestion (Event Hubs/Kafka)
-- Cloud data lake architecture and operational data contracts
 
 ## Milestone 2 - Model Development and Evaluation
 ### Required
@@ -35,16 +33,23 @@ This status is mapped to the milestone brief in `Docs/Project Idea.pdf`.
 ### Completed in Repository
 - LSTM autoencoder workflow in `notebooks/LSTM.ipynb`
 - USAD workflow in `notebooks/USAD.ipynb`
+- Isolation Forest baseline and tuned sweep in `notebooks/Isolation_Forest.ipynb`
 - Model artifacts exported in `Data/models/`
   - `lstm_autoencoder.pth`
   - `usad_swat_weights.pth`
   - `usad_swat_model_full.pth`
+  - `isolation_forest_model.joblib`
+  - `isolation_forest_tuned.joblib`
+- Standardized benchmark table across candidate models:
+
+  | Model | Notebook | Key result snapshot |
+  | --- | --- | --- |
+  | LSTM Autoencoder | `notebooks/LSTM.ipynb` | ~0.97 accuracy on test windows |
+  | USAD | `notebooks/USAD.ipynb` | ~0.96 accuracy; ~0.9994 ROC-AUC |
+  | Isolation Forest | `notebooks/Isolation_Forest.ipynb` | Best contamination 0.01; 0.8137 accuracy, 0.8365 precision, 0.6974 recall, 0.7606 F1 |
 - Metrics are reported in notebook outputs (classification report, confusion matrix, ROC-AUC)
 
 ### Pending
-- Isolation Forest baseline in current repository
-- Structured hyperparameter search tracking
-- Standardized benchmark table across all candidate models
 
 ## Milestone 3 - Cloud Deployment and Integration
 ### Completed
